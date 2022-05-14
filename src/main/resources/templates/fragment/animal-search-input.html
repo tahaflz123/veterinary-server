@@ -1,0 +1,4 @@
+<form style="padding-top: 30px; text-align: center" th:fragment="searchbar" method="GET" th:action="@{'/api/animal/search?q=' + ${search}}">
+  <input name="q"  type="text" placeholder="Search Animals" />
+  <button type="submit">Search</button>
+</form>

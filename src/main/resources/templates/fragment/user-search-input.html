@@ -1,0 +1,10 @@
+<form style="margin-left: 15px" th:fragment="searchbar" class="navbar-from navbar-left" method="GET" th:action="@{'/api/user/search?q=' + ${search}}">
+ <div class="input-group">
+    <input name="q" type="text" class="form-control" placeholder="Search User">
+    <div class="input-group-btn">
+      <button class="btn btn-danger" type="submit">
+      Submit
+      </button>
+    </div>
+  </div>
+</form>
