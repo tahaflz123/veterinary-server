@@ -18,8 +18,14 @@
 </div>
 <div class="container">
 
+    
    <div style="margin-top: 40px; margin-bottom:30px" class="table-responsive" th:each="user : ${user.user}">
-      <table class="table" >
+       <div style="margin-bottom: 20px"sec:authorize="isAuthenticated() == true">
+         <div style="text-align: center; margin: 15px" th:if="${#authentication.getPrincipal().getId()} == ${user.id} OR ${#authorization.expression('hasAuthority(''ADMIN'')')} == true">
+           <a style="border-radius: 3px;background-color: red; padding: 10px;color: white;text-decoration: none;  margin-bottom: 15px" th:href="@{'/api/user/update?id='} + ${#authentication.getPrincipal().getId()}">Update</a>
+         </div>
+       </div>
+          <table class="table" >
         <thead>
            <tr>
              <td>ID</td>
