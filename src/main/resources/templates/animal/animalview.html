@@ -64,23 +64,19 @@
 					</tr>
 					<div sec:authorize="isAuthenticated() == true">
 						<div
-							th:if="${#authentication.getPrincipal().getId()} == ${animal.user.id}">
+							th:if="${#authentication.getPrincipal().getId()} == ${animal.user.id} OR ${#authorization.expression('hasAuthority(''ADMIN'')')} == true">
 							<tr>
 								<td><a class="btn btn-lg btn-primary"
 									th:href="@{'/api/animal/update?id='} + ${animal.id}">Update</a></td>
 							</tr>
-						</div>
-						<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')} == true">
-					       <tr>
-						      <td><a class="btn btn-lg btn-primary"
-							th:href="@{'/api/animal/admin/delete?id='} + ${animal.id}">Delete</a>
-							  </td>
-					       </tr>
-					       <tr>
-								<td><a class="btn btn-lg btn-primary"
-									th:href="@{'/api/animal/update?id='} + ${animal.id}">Update</a></td>
-							</tr>
 					    </div>
+				     </div>
+					<div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')} == true">
+					    <tr>
+					     <td><a class="btn btn-lg btn-primary"
+							    th:href="@{'/api/animal/admin/delete?id='} + ${animal.id}">Delete</a>
+					     </td>
+					    </tr>
 					</div>
 				</tbody>
 			</table>
